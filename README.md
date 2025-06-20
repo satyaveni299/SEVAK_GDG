@@ -24,10 +24,3 @@ The informal workforce often lacks reliable income, verified credibility, or upw
 - **Database**: SQLite (local)
 - **Smart Contracts (Future)**: Token issuance, reputation proofs
 
-## 📦 Installation
-
-```bash
-git clone https://github.com/your-username/sevak.git
-cd sevak
-npm install
-npm run dev
