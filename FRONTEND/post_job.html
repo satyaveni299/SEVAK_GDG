@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D8CCA3; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #555555;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 150px;
+            padding: 10px;
+            margin-top: 20px;
+            background-color:#d6c282;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color:#b1994a;
+        }
+
+        .location-btn {
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .location-btn:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+     <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+</head>
+<body>
+      <div id="google_translate_element"></div> 
+    
+   
+    <div class="container">
+        <h1>Post a Job / Request a service</h1>
+        <form id="jobForm">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" name="title" placeholder="Enter job title" required>
+        
+            <label for="jobCategory">Job Category</label>
+            <select id="jobCategory" name="category" required>
+                <option value="all">All</option>
+                <option value="home-cleaning">Construction</option>
+                <option value="home-cleaning">Home cleaning</option>
+                <option value="yard-work">Yard work</option>
+                <option value="furniture-assembly">Furniture assembly</option>
+                <option value="personal-training">Personal training</option>
+                <option value="handyman">Handyman</option>
+                <option value="massage">Massage</option>
+                <option value="plumbing">Plumbing</option>
+                <option value="carpentry">Carpentry</option>
+                <option value="electrical">Electrical</option>
+                <option value="painting">Painting</option>
+                <option value="landscaping">Landscaping</option>
+                <option value="tutoring">Tutoring</option>
+                <option value="Household">Household</option>
+                <option value="child-care">Child care</option>
+                <option value="Nursing">Nursing</option>
+            </select>
+        
+            <label for="jobDescription">Job Description</label>
+            <textarea id="jobDescription" name="description" rows="4" placeholder="Describe the job in detail" required></textarea>
+        
+            <label for="location">Location</label>
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="location" name="location" placeholder="Enter job location" required>
+                <button type="button" class="location-btn" onclick="getLocation()">Get Location</button>
+            </div>
+        
+            <label for="jobLatitude">Latitude</label>
+            <input type="text" id="latitude" name="latitude" readonly>
+        
+            <label for="jobLongitude">Longitude</label>
+            <input type="text" id="longitude" name="longitude" readonly>
+        
+            <label for="postedDate">Posted On</label>
+            <input type="date" id="postedDate" name="posted_on" required>
+        
+            <label for="jobDeadline">Deadline</label>
+            <input type="date" id="jobDeadline" name="deadline" required>
+        
+            <button type="submit">Post Job</button>
+        </form>
+        
+        <p id="error" class="error"></p>
+    </div>
+
+    <script>
+      const form = document.getElementById('jobForm');
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();  // Prevent the default form submission
+
+    // Retrieve the values of each form field using their IDs
+const title = document.getElementById('jobTitle').value;
+const category = document.getElementById('jobCategory').value;
+const description = document.getElementById('jobDescription').value;
+const location = document.getElementById('location').value;
+const latitude = document.getElementById('latitude').value;
+const longitude = document.getElementById('longitude').value;
+const posted_on = document.getElementById('postedDate').value;
+const deadline = document.getElementById('jobDeadline').value;
+    // Email and other values (assuming you are fetching these dynamically or manually entering them)
+    const email = 'subbu@gmail.com'; // Example hardcoded email, or you can retrieve this from user input if required
+    const assigned_to = null; // Optional, can be left null for now
+    const status = "open"; // Default job status
+
+    // Create the data object to be sent to the server
+    const formData = {
+        title,
+        category,
+        description,
+        location,
+        latitude,
+        longitude,
+        posted_on,
+        deadline,
+        email,
+        assigned_to,
+        status
+    };
+
+    try {
+        // Send the data to the jobPostings endpoint
+        const response = await fetch('http://localhost:3000/jobsPostings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Job posted successfully!');
+            form.reset();  // Reset the form after successful submission
+        } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.error}`);
+        }
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+});
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+
+                        document.getElementById('latitude').value = latitude;
+                        document.getElementById('longitude').value = longitude;
+                        document.getElementById('location').value = `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+                        // Using Nominatim to get a human-readable location
+                        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data && data.address) {
+                                    const location = `${data.address.city || data.address.town || data.address.village}, ${data.address.country}`;
+                                    document.getElementById('location').value = location;
+                                }
+                            })
+                            .catch(() => {
+                                document.getElementById('location').value = "Location could not be fetched";
+                            });
+                    },
+                    (error) => {
+                        document.getElementById('error').textContent = 'Error fetching location: ' + error.message;
+                    }
+                );
+            } else {
+                document.getElementById('error').textContent = 'Geolocation is not supported by this browser.';
+            }
+        }
+    </script>
+         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  
+</body>
+</html>

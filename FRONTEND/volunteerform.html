@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D8CCA3; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #555555;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 150px;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #d6c282;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b1994a;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Volunteer Service Request</h1>
+        <form id="volunteerForm">
+            <label for="volunteerTitle">Service Title</label>
+            <input type="text" id="volunteerTitle" name="title" placeholder="Enter service title" required>
+        
+            <label for="volunteerCategory">Service Category</label>
+            <select id="volunteerCategory" name="category" required>
+                <option value="all">All</option>
+                <option value="environment">Environmental</option>
+                <option value="education">Education</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="animal-welfare">Animal Welfare</option>
+                <option value="community-support">Community Support</option>
+                <option value="event-organizing">Event Organizing</option>
+                <option value="youth-mentorship">Youth Mentorship</option>
+            </select>
+        
+            <label for="volunteerDescription">Service Description</label>
+            <textarea id="volunteerDescription" name="description" rows="4" placeholder="Describe the volunteer opportunity in detail" required></textarea>
+        
+            <label for="volunteerLocation">Location</label>
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="volunteerLocation" name="location" placeholder="Enter service location" required>
+                <button type="button" class="location-btn" onclick="getLocation()">Get Location</button>
+            </div>
+        
+            <label for="volunteerLatitude">Latitude</label>
+            <input type="text" id="volunteerLatitude" name="latitude" readonly>
+        
+            <label for="volunteerLongitude">Longitude</label>
+            <input type="text" id="volunteerLongitude" name="longitude" readonly>
+        
+            <label for="volunteerPostedDate">Posted On</label>
+            <input type="date" id="volunteerPostedDate" name="posted_on" required>
+        
+            <label for="volunteerDeadline">Deadline</label>
+            <input type="date" id="volunteerDeadline" name="deadline" required>
+        
+            <button type="submit">Post Volunteer Opportunity</button>
+        </form>
+        
+        <p id="error" class="error"></p>
+    </div>
+
+    <script>
+      const form = document.getElementById('volunteerForm');
+      form.addEventListener('submit', async (event) => {
+          event.preventDefault();  // Prevent the default form submission
+
+          // Retrieve the values of each form field using their IDs
+          const title = document.getElementById('volunteerTitle').value;
+          const category = document.getElementById('volunteerCategory').value;
+          const description = document.getElementById('volunteerDescription').value;
+          const location = document.getElementById('volunteerLocation').value;
+          const latitude = document.getElementById('volunteerLatitude').value;
+          const longitude = document.getElementById('volunteerLongitude').value;
+          const posted_on = document.getElementById('volunteerPostedDate').value;
+          const deadline = document.getElementById('volunteerDeadline').value;
+
+          // Email and other values (assuming you are fetching these dynamically or manually entering them)
+          const email = 'volunteer@example.com'; // Example hardcoded email
+          const assigned_to = null; // Optional, can be left null for now
+
+          // Prepare the data object to send (e.g., to a server)
+          const data = {
+            title,
+            category,
+            description,
+            location,
+            latitude,
+            longitude,
+            posted_on,
+            deadline,
+            email,
+            assigned_to
+          };
+
+          // Example: Send data to a server (you can replace this with actual server code)
+          try {
+            const response = await fetch('/api/volunteer', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+              alert('Volunteer service request posted successfully!');
+              form.reset();  // Reset form after successful submission
+            } else {
+              throw new Error('Failed to post the service request');
+            }
+          } catch (error) {
+            document.getElementById('error').textContent = error.message;
+          }
+      });
+
+      // Function to get the user's location
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            document.getElementById('volunteerLatitude').value = latitude;
+            document.getElementById('volunteerLongitude').value = longitude;
+
+            // Optionally, update the location input field with a simple message
+            document.getElementById('volunteerLocation').value = Lat: ${latitude}, Lon: ${longitude};
+          }, function() {
+            alert("Geolocation failed. Please enter location manually.");
+          });
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+    </script>
+</body>
+</html>

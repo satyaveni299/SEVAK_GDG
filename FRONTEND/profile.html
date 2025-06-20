@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+   Feedback
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D8CCA3;
+        }
+        .profile-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .profile-sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-right: 20px;
+        }
+        .profile-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .profile-sidebar ul li {
+            margin-bottom: 20px;
+        }
+        .profile-sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .profile-sidebar ul li a:hover {
+            background-color: #87805E;
+            color: #fff;
+        }
+        .application-link{
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .application-link:hover {
+            background-color: #87805E;
+            color: #fff;
+        }
+        .profile-content {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .profile-feedback-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .profile-feedback-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+        }
+        .profile-feedback-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-feedback-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile-feedback-item .profile-feedback-content {
+            flex: 1;
+        }
+        .profile-feedback-item .profile-feedback-content h3 {
+            font-size: 16px;
+            margin: 0;
+            font-weight: 600;
+            color: #333;
+        }
+        .profile-feedback-item .profile-feedback-content p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #666;
+        }
+        .profile-feedback-item .profile-feedback-content .profile-date {
+            font-size: 12px;
+            color: #999;
+        }
+        .profile-feedback-item .profile-feedback-options {
+            margin-left: 20px;
+        }
+        .profile-feedback-item .profile-feedback-options i {
+            font-size: 20px;
+            color: #999;
+        }
+        .profile-content-section {
+            display: none;
+        }
+        .profile-content-section.active {
+            display: block;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 2px solid #87805E;
+        }
+        .profile-header .profile-info {
+            flex: 1;
+        }
+        .profile-header .profile-info h2 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 600;
+            color: #333;
+        }
+        .profile-header .profile-info p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #666;
+        }
+        .profile-details {
+            margin-top: 20px;
+        }
+        .profile-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        .profile-details p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #666;
+        }
+        .profile-details .profile-skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .profile-details .profile-skill-list p {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 0;
+        }
+        .profile-details .profile-experience, .profile-details .profile-education {
+            margin-top: 20px;
+        }
+        .profile-details .profile-experience p, .profile-details .profile-education p {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+            border-left: 4px solid #87805E;
+        }
+        .profile-notification-item {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .profile-notification-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-notification-item i {
+            font-size: 24px;
+            color: #87805E;
+            margin-right: 15px;
+        }
+        .profile-notification-item h4 {
+            font-size: 16px;
+            margin: 0 0 5px 0;
+            font-weight: 600;
+            color: #333;
+        }
+        .profile-notification-item p {
+            font-size: 14px;
+            margin: 0;
+            color: #666;
+        }
+        .profile-logout-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .profile-logout-card h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        .profile-logout-card button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .profile-logout-card .yes-button {
+            background-color: #87805E;
+            color: #fff;
+        }
+        .profile-logout-card .yes-button:hover {
+            background-color: #6b6848;
+        }
+        .profile-logout-card .cancel-button {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        .profile-logout-card .cancel-button:hover {
+            background-color: #c0c0c0;
+        }
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .profile-sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .profile-content {
+                width: 100%;
+            }
+        }
+  </style>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,te,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+  </script>
+ </head>
+ <body>
+    <div id="google_translate_element"></div>
+    <div class="profile-outer-container">
+        <div id="navbar-container"></div>
+  <div class="profile-container">
+   <div class="profile-sidebar">
+    <ul>
+     <li>
+      <a href="#" id="profile-link">
+       Profile
+      </a>
+     </li>
+       
+     </li>
+     <li>
+      <a href="#" id="feedbacks-link">
+       Feedbacks
+      </a>
+     </li>
+     <li>
+      <a href="#" id="notifications-link">
+       Notifications
+      </a>
+     </li>
+     
+        <a href="reputation_tokens.html" class="application-link">
+            <li>
+         Reputation Tokens
+        </li>
+        </a>
+       </li>
+     <a href="application-demo.html" class="application-link">
+        <li>
+         Application
+        </li>
+        </a>
+    </ul>
+   
+   </div>
+   <div class="profile-content">
+    <div class="profile-content-section active" id="profile-section">
+     <div class="profile-header">
+      <img alt="Profile picture of the worker" height="100" src="https://storage.googleapis.com/a1aa/image/bqzf8WwQ0lzFAKXM8WclPXhpUfvceUfpexFdXykoEgrvgv1gC.jpg" width="100" id="profile-picture"/>
+      <div class="profile-info">
+       <h2 id ="profile-name">
+        Unknown Worker
+       </h2>
+       <p id="profile-role">
+        Professional Plumber
+       </p>
+       <p id="profile-email">
+        unknown@example.com
+       </p>
+      </div>
+     </div>
+     <div class="profile-details">
+      <h3>
+       About Me
+      </h3>
+      <p id="bio">
+       I am a professional plumber with over 10 years of experience in the industry. I specialize in residential and commercial plumbing services, including pipe installation, leak repairs, and water heater installations. I am dedicated to providing high-quality services and ensuring customer satisfaction.
+      </p>
+      <h3>
+       Skills
+      </h3>
+      <div class="profile-skill-list">
+       <p>
+        Pipe Installation
+       </p>
+       <p>
+        Leak Repairs
+       </p>
+       <p>
+        Water Heater Installations
+       </p>
+       <p>
+        Drain Cleaning
+       </p>
+      </div>
+      <div class="profile-experience">
+       <h3>
+        Experience
+       </h3 >
+       <p id="profile-experience"></p>
+       <p>
+        ABC Plumbing Services (2015 - Present)
+       </p>
+       <p>
+        XYZ Plumbing Co. (2010 - 2015)
+       </p>
+      </div>
+      <div class="profile-education">
+       <h3>
+        Education
+       </h3>
+       <p id ="profile-education">
+        Certified Plumber, Plumbing School of Excellence (2009)
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="profile-content-section" id="feedbacks-section">
+     <h2>
+      Recent jobs
+     </h2>
+     <div class="profile-feedback-item">
+      <img alt="Profile picture of the feedback provider" height="50" src="https://storage.googleapis.com/a1aa/image/INfq8Bl2dVXtHazwcNf7ZD3KeS3j5dGFGUhdeLZuViADU3aQB.jpg" width="50"/>
+      <div class="profile-feedback-content">
+       <h3>
+        Plumbing
+       </h3>
+       <p>
+        I had a great experience with this plumber. They were very professional and fixed my leaking pipes quickly. Highly recommend their services!
+       </p>
+       <p class="profile-date">
+        Jan 2023 - Feb 2023 . 1 mo
+       </p>
+      </div>
+      <div class="profile-feedback-options">
+       <i class="fas fa-ellipsis-h">
+       </i>
+      </div>
+     </div>
+     <div class="profile-feedback-item">
+      <img alt="Profile picture of the feedback provider" height="50" src="https://storage.googleapis.com/a1aa/image/INfq8Bl2dVXtHazwcNf7ZD3KeS3j5dGFGUhdeLZuViADU3aQB.jpg" width="50"/>
+      <div class="profile-feedback-content">
+       <h3>
+        Plumbing
+       </h3>
+       <p>
+        The plumber was very knowledgeable and fixed my bathroom's clogged drain efficiently. Excellent service and very friendly.
+       </p>
+       <p class="profile-date">
+        Mar 2023 - Apr 2023 . 1 mo
+       </p>
+      </div>
+      <div class="profile-feedback-options">
+       <i class="fas fa-ellipsis-h">
+       </i>
+      </div>
+     </div>
+     <div class="profile-feedback-item">
+      <img alt="Profile picture of the feedback provider" height="50" src="https://storage.googleapis.com/a1aa/image/INfq8Bl2dVXtHazwcNf7ZD3KeS3j5dGFGUhdeLZuViADU3aQB.jpg" width="50"/>
+      <div class="profile-feedback-content">
+       <h3>
+        Plumbing
+       </h3>
+       <p>
+        Great plumber! They installed a new water heater in my home and ensured everything was working perfectly. Very satisfied with their work.
+       </p>
+       <p class="profile-date">
+        May 2023 - Jun 2023 . 1 mo
+       </p>
+      </div>
+      <div class="profile-feedback-options">
+       <i class="fas fa-ellipsis-h">
+       </i>
+      </div>
+     </div>
+    </div>
+    <div class="profile-content-section" id="notifications-section">
+     <h2>
+      Notifications
+     </h2>
+     <div class="profile-notification-item">
+      <i class="fas fa-briefcase"></i>
+      <div>
+       <h4>
+        New Job Opportunity
+       </h4>
+       <p>
+        You have a new job opportunity for a plumbing project in your area. Check it out and apply now!
+       </p>
+      </div>
+     </div>
+     <div class="profile-notification-item">
+      <i class="fas fa-envelope"></i>
+      <div>
+       <h4>
+        Job Application Update
+       </h4>
+       <p>
+        Your application for the plumbing job at XYZ Company has been reviewed. Please check your email for further details.
+       </p>
+      </div>
+     </div>
+     <div class="profile-notification-item">
+      <i class="fas fa-comment"></i>
+      <div>
+       <h4>
+        New Feedback Received
+       </h4>
+       <p>
+        You have received new feedback from a recent job. Click here to read the feedback and respond.
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+</div>
+  <script>
+   document.querySelectorAll('.profile-sidebar ul li a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelectorAll('.profile-content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetId = this.id.replace('-link', '-section');
+            if (document.getElementById(targetId)) {
+                document.getElementById(targetId).classList.add('active');
+            }
+        });
+    });
+  </script>
+  <script  src="navbar.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Check if profile data exists in localStorage
+      const data = JSON.parse(localStorage.getItem('profileData'));
+  
+      if (data) {
+        // If data exists, populate the profile page
+        // Update Profile Picture
+        document.getElementById('profile-picture').src = '/FRONTEND/images/default_profile_pic.jpeg'; // Provide default if no image
+  
+        // Update Profile Name
+        document.getElementById('profile-name').textContent = data.full_name;
+  
+        // Update Professional Role
+        document.getElementById('profile-role').textContent = data.professional_role;
+  
+        // Update Email
+        document.getElementById('profile-email').textContent = data.email;
+  
+        // Update Bio
+        document.getElementById('bio').textContent = data.bio;
+  
+        // Update Skills
+        const skillsList = document.querySelector('.profile-skill-list');
+        skillsList.innerHTML = '';  // Clear previous skills
+        data.skills.forEach(skill => {
+          const skillItem = document.createElement('p');
+          skillItem.textContent = skill;
+          skillsList.appendChild(skillItem);
+        });
+  
+        // Update Experience
+        document.getElementById('profile-experience').textContent = data.experience;
+  
+        // Update Education
+        document.getElementById('profile-education').textContent = `${data.highest_education_level}, ${data.institution_name} (${data.year_of_completion})`;
+      } else {
+        // If no profile data exists in localStorage
+        console.log('No profile data found!');
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+ </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+      </script>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    <div class="login-outer-container">
+        <div id="navbar-container"></div>
+        <div class="login-main-container">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit">Login</button>
+                </form>
+                <div class="social-buttons">
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="google">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="x">
+                        <img src="images/x-logo.jpeg" class="x-image-logo"/>
+                    </a>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="already-account">
+                    <a href="signup.html">Don't have an account? Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="navbar.js"></script>
+    <script src="login.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+</body>
+</html>

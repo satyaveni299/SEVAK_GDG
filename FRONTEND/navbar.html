@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sevak</title>
+    <link rel="stylesheet" href="navbar.css">
+</head>
+<body>
+    <!-- Header Section -->
+     
+    <header class="home-header">
+        <div class="ham-logo-container">
+            <div class="home-logo-container">
+                <img alt="Sevak logo" class="home-sevak-logo-style" src="images/sevak_logo_image.png"/>
+                <p class="home-logo-title">SEVAK</p>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <nav>
+            <a href="home.html#How-it-works-section" class="home-nav-item">
+                How it works
+            </a>
+            <a href="forworkers.html" class="home-nav-item">
+                For workers
+            </a>
+            <a href="services.html" class="home-nav-item">
+                For Services
+            </a>
+            <a href="forVolunteers.html" class="home-nav-item">
+                For volunteers
+            </a>
+            <a href="about-us.html" class="home-nav-item">
+                About us
+            </a>
+            <!-- Profile Image Container -->
+            <div id="profile-container" style="display: none;">
+                <a href="profile.html" id="profile-link">
+                    <img id="profile-image" src="" alt="Profile" class="profile-image-style"/>
+                </a>
+            </div>
+        </nav>
+        <div class="three-icons-laptop">
+            <a href="https://sevakchatbot-eriwvfyvkgnnnjqqc6ywow.streamlit.app">
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712133.png" class="bot-icon responsive-icon"/>
+            </a>
+            <a href="https://sevak-call-lu2bhlhf4zeo3n8crzyydj.streamlit.app/">   
+                <img src="https://static.vecteezy.com/system/resources/previews/010/829/986/large_2x/phone-icon-in-trendy-flat-style-free-png.png" class="phone-icon responsive-icon"/>
+            </a>
+            <a href="https://sevak-sms-sender-bkvyxqby8kb6e5xkzkxktw.streamlit.app//">   
+                <img src="https://icon-library.com/images/message-icon-png/message-icon-png-3.jpg" class="phone-icon responsive-icon"/>
+            </a>
+        </div>
+        <div class="home-cta-buttons">
+            <a id="login-btn" class="home-login" href="login.html">
+                Log in
+            </a>
+            <a id="signup-btn" class="home-signup" href="signup.html">
+                Sign up
+            </a>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" style="display: none; background-color: #afa77e;">
+        <a href="#How-it-works-section" class="home-nav-item mobile">
+            How it works
+        </a>
+        <a href="forworkers.html" class="home-nav-item mobile">
+            For workers
+        </a>
+        <a href="services.html" class="home-nav-item mobile">
+            For Services
+        </a>
+        <a href="forVolunteers.html" class="home-nav-item mobile">
+            For volunteers
+        </a>
+        <a href="about-us.html" class="home-nav-item mobile">
+            About us
+        </a>
+        <a href="https://sevakchatbot-eriwvfyvkgnnnjqqc6ywow.streamlit.app" class="home-nav-item mobile">          
+            Chat Bot
+        </a>
+        <a href="https://sevak-call-lu2bhlhf4zeo3n8crzyydj.streamlit.app/" class="home-nav-item mobile">
+            Call
+        </a>
+        <a href="https://sevak-sms-sender-bkvyxqby8kb6e5xkzkxktw.streamlit.app//" class="home-nav-item mobile">
+            SMS
+        </a>
+        <!-- Profile Image in Mobile Menu -->
+        <div id="mobile-profile-container" style="display: none;">
+            <a href="profile.html" id="mobile-profile-link" class="home-nav-item mobile">
+                <p id="mobile-profile-image">Profile</p>
+            </a>
+        </div>
+        <!-- Login and SignUp buttons (hidden if logged in) -->
+        <a id="mobile-login-btn" class="home-nav-item mobile" href="login.html">
+            Log in
+        </a>
+        <a id="mobile-signup-btn" class="home-nav-item mobile" href="signup.html">
+            Sign up
+        </a>
+       
+               
+    </nav>
+    <script src="navbar.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Request a Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+      </script>
+   <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #D8CCA3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .request-service-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 15px;
+        }
+        .request-service-container h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #87805E;
+        }
+        .request-service-container p {
+            font-size: 16px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .request-service-form-group {
+            margin-bottom: 20px;
+        }
+        .request-service-form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .request-service-form-group select,
+        .request-service-form-group textarea,
+        .request-service-form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .request-service-form-group textarea {
+            height: 100px;
+            resize: none;
+        }
+        .request-service-form-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        .request-service-form-group .request-service-checkbox-label {
+            display: flex;
+            align-items: center;
+        }
+        .request-service-btn {
+            display: inline-block;
+            background-color: #87805E;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        .request-service-btn:hover {
+            background-color: #D8CCA3;
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    <div class="request-service-container">
+        <h1>Request a Service</h1>
+        <p>Get your tasks done without leaving home. Our skilled professionals are ready to help with whatever you need.</p>
+        <div class="request-service-form-group">
+            <label for="category">Select a service category</label>
+            <select id="category">
+                <option value="">Select a category</option>
+                <option value="construction">Construction</option>
+                <option value="plumbing">Plumbing</option>
+                <option value="carpentry">Carpentry</option>
+                <option value="electrical">Electrical Repairs</option>
+                <option value="housekeeping">Housekeeping</option>
+                <option value="painting">Painting and Decorating</option>
+                <option value="agricultural">Agricultural Labor</option>
+                <option value="transport">Transport/Delivery Services</option>
+                <option value="childcare">Childcare/Nanny Services</option>
+            </select>
+        </div>
+        <div class="request-service-form-group">
+            <label for="issue">Describe the issue</label>
+            <textarea id="issue" placeholder="Tell us what needs to be done and provide any relevant details. You can include specifics like the task requirements, materials needed, or any previous work completed."></textarea>
+        </div>
+        <h2>Preferred Date & Time</h2>
+        <div class="request-service-form-group">
+            <label for="posting-date">Posting Date</label>
+            <input type="date" id="posting-date">
+        </div>
+        <div class="request-service-form-group">
+            <label for="last-date">Last Date</label>
+            <input type="date" id="last-date">
+        </div>
+        <div class="request-service-form-group">
+            <label for="time">Select a time range</label>
+            <select id="time">
+                <option value="">Select a time range</option>
+                <option value="morning">Morning (8 AM - 12 PM)</option>
+                <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                <option value="evening">Evening (4 PM - 8 PM)</option>
+            </select>
+        </div>
+        <div class="request-service-form-group">
+            <label for="wages">Wages Range</label>
+            <input type="text" id="wages" placeholder="Enter the wage range">
+        </div>
+        <h2>Contact Information</h2>
+        <div class="request-service-form-group">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" placeholder="First name">
+        </div>
+        <div class="request-service-form-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" placeholder="Last name">
+        </div>
+        <div class="request-service-form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email">
+        </div>
+        <div class="request-service-form-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" placeholder="Phone number">
+        </div>
+        <div class="request-service-form-group request-service-checkbox-label">
+            <input type="checkbox" id="terms">
+            <label for="terms">I agree to the Sevak Terms of Service and Privacy Policy.</label>
+        </div>
+        <button class="request-service-btn">Submit Request</button>
+    </div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+</body>
+</html>

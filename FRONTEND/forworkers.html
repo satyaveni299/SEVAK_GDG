@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+   Job Listings
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+ <style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #D8CCA3;
+    color: #333;
+  }
+  
+  .forworkers-container {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .forworkers-sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #D8CCA3;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+  }
+  
+  .forworkers-sidebar h3 {
+    margin-top: 0;
+    color: #87805E;
+  }
+  
+  .forworkers-sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .forworkers-sidebar ul li {
+    margin-bottom: 10px;
+  }
+  
+  .forworkers-sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .forworkers-content {
+    flex: 1;
+  }
+  
+  .forworkers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .forworkers-header h1 {
+    margin: 0;
+    color: #37331f;
+    text-align: center;
+  }
+  
+  .forworkers-header button {
+    background-color: #87805E;
+    border: 1px solid #87805E;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .forworkers-search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .forworkers-search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+  }
+  
+  .forworkers-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .forworkers-filter-group {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    flex: 1;
+  }
+  
+  .forworkers-filter-group h4 {
+    margin: 10px 0;
+    color: #87805E;
+  }
+  
+  .forworkers-filter-group ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .forworkers-filter-group ul li {
+    margin-bottom: 10px;
+  }
+  
+  .forworkers-filter-group ul li label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .forworkers-filter-group ul li input {
+    margin-right: 10px;
+  }
+  
+  .forworkers-job-listings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .static-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .forworkers-job-card,
+  .static-forworkers-job-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    color: #483434;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+    text-decoration: none;
+  }
+  
+  .forworkers-job-card:hover,
+  .static-forworkers-job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #f5f5f5;
+  }
+  
+  .static-forworkers-job-card a {
+    text-decoration: none;
+    color: #333;
+  }
+  .forworkers-job-card p{
+    text-decoration: none;
+  }
+  .job-card-link{
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .static-forworkers-job-card img {
+    text-decoration: none;
+    color: #333;
+    height: 150px;
+    width: 260px;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .forworkers-container {
+      flex-direction: column;
+    }
+    .forworkers-sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .forworkers-job-card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .forworkers-job-card {
+      width: 100%;
+    }
+  }
+  
+  .forworkers-main-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Base Styles for Status */
+  .status {
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: rgb(42, 38, 38);
+    text-align: center;
+    font-size: 0.9rem;
+    animation: fadeIn 0.1s ease-in-out, pulsate 1s infinite ease-in-out; /* Reduced the time */
+}
+
+/* Active Status Animation */
+.status.open {
+    background-color: #4CAF50; /* Green */
+    box-shadow: 0 0 20px 4px rgba(71, 188, 75, 0.8);
+}
+
+/* Pending Status Animation */
+.status.pending {
+    background-color: #FFC107; /* Yellow */
+    box-shadow: 0 0 10px 2px rgba(255, 193, 7, 0.8);
+    animation: fadeIn 0.3s ease-in-out, pulseGlow 1.5s infinite alternate; /* Reduced time */
+}
+
+/* Closed Status Animation */
+.status.closed {
+    background-color: #F44336; /* Red */
+    box-shadow: 0 0 10px 2px rgba(244, 67, 54, 0.8);
+    animation: fadeIn 0.3s ease-in-out, glowShrink 1.5s infinite alternate; /* Reduced time */
+   font-size: 10px;
+    padding:3px;
+}
+
+/* Keyframes for Pulsating Animation */
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Glow Animation for Pending Status */
+@keyframes pulseGlow {
+    0% {
+        background-color: #FFC107;
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+    }
+    100% {
+        background-color: #FFD54F;
+        box-shadow: 0 0 30px rgba(255, 213, 79, 0.8);
+    }
+}
+
+/* Shrink and Glow for Closed Status */
+@keyframes glowShrink {
+    0% {
+        transform: scale(2.1);
+        box-shadow: 0 0 20px rgba(244, 67, 54, 0.8);
+    }
+    100% {
+        transform: scale(2);
+        box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(1);
+    }
+}
+
+  /* Apply Button Styling */
+.job-apply-btn {
+    padding: 10px 10px;
+    border: none;
+    background-color: #a99a63; /* Green background */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+/* Hover and Focus Effects */
+.job-apply-btn:hover,
+.job-apply-btn:focus {
+    background-color: #c6aa47; /* Slightly darker green on hover */
+    transform: translateY(-3px); /* Lift the button */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Active State Styling */
+.job-apply-btn:active {
+    transform: translateY(0); /* Reset the lift effect */
+    background-color: #388e3c; /* Darker green on click */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Smaller shadow on click */
+}
+
+/* Disabled Button */
+.job-apply-btn:disabled {
+    background-color: #b0bec5; /* Grey background */
+    color: #9e9e9e; /* Grey text */
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.job-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.job-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.job-item h3 {
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.job-item p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #666;
+}
+
+.job-item p:nth-child(3) {
+  font-weight: bold;
+  color: #2d87f0;
+}
+
+.job-item p:nth-child(4),
+.job-item p:nth-child(5) {
+  color: #999;
+  font-style: italic;
+}
+
+.job-item p:last-child {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.job-item p:last-child[style*="status: closed"] {
+  color: #f44336;
+}
+
+</style>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,te,hi',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+  }
+</script>
+ </head>
+ <body>
+  <div id="google_translate_element"></div>
+    
+   
+  <div class="forworkers-main-container">
+    <div id="navbar-container"></div>
+    <div class="forworkers-container">
+   <div class="forworkers-content">
+    <div class="forworkers-header">
+     <h1>
+      Find a job you love
+     </h1>
+     <a href="post_job.html">
+     <button>
+      Post a job
+     </button>
+     </a>
+    </div>
+    <div class="forworkers-search-bar">
+     <input placeholder="Search by title, keyword, or company" type="text"/>
+    </div>
+    <div class="forworkers-filters">
+      <div class="forworkers-filter-group"  id="categories-filter">
+        <h4>Categories</h4>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" id="all" value="All" onchange="getSelectedFilters()" /> All
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="construction" value="Construction" onchange="getSelectedFilters()" /> Construction
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="plumbing" value="Plumbing" onchange="getSelectedFilters()" /> Plumbing
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="carpentry" value="Carpentry" onchange="getSelectedFilters()" /> Carpentry
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="electrical-repairs" value="Electrical Repairs" onchange="getSelectedFilters()" /> Electrical Repairs
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="housekeeping" value="Housekeeping" onchange="getSelectedFilters()" /> Housekeeping
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="painting-decorating" value="Painting and Decorating" onchange="getSelectedFilters()" /> Painting and Decorating
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="agricultural-labor" value="Agricultural Labor" onchange="getSelectedFilters()" /> Agricultural Labor
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="transport-delivery" value="Transport/Delivery Services" onchange="getSelectedFilters()" /> Transport/Delivery Services
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="childcare-nanny" value="Childcare/Nanny Services" onchange="getSelectedFilters()" /> Childcare/Nanny Services
+            </label>
+          </li>
+        </ul>
+        <button id="apply-filter-btn">apply filter</button>
+      </div>
+    
+     <div class="forworkers-filter-group" id="proximity-filter">
+      <h4>Proximity</h4>
+      <ul>
+        <li>
+          <label><input type="checkbox" id="proximity-checkbox" onchange="getSelectedFilters()" /> It will sort based on distance</label>
+        </li>
+      </ul>
+      <button id="sortJobs">Sort Jobs by Distance</button>
+    </div>
+   
+    <!-- <div class="forworkers-filter-group" id="status-filter">
+      <h4>Status</h4>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="open" onchange="getSelectedFilters()" /> Open</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="in progress" onchange="getSelectedFilters()" /> In Progress</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="closed" onchange="getSelectedFilters()" /> Closed</label>
+        </li>
+      </ul>
+    </div> -->
+    
+     <div class="forworkers-filter-group">
+      <h4>
+       Job Type
+      </h4>
+      <ul>
+       <li>
+        <label>
+         <input type="checkbox"/>
+         Full-time
+        </label>
+       </li>
+      </ul>
+     </div>
+     
+
+    </div>
+    <div class="fallback-container" id="fallback-container">
+        <h2 class="error-message">Unable to fetch job listings. Here are some sample job postings:</h2>
+        <div class="static-container">
+     <div class="static-forworkers-job-card">
+      <a href="apply_page.html">
+       <img alt="Construction Worker" height="150" src="https://storage.googleapis.com/a1aa/image/wddJqPwGxYHQtq_8cJ-uIQgbFaYSYJdcNTLZBjPsIKY.jpg" width="200"/>
+       <h3>
+        Construction Worker
+       </h3>
+       <p>
+        Rajamundry
+       </p>
+       <p>
+        open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="apply_page.html">
+       <img alt="Plumber" height="150" src="https://storage.googleapis.com/a1aa/image/Fji9c5oFg9hkpvh5YxY5HjJo3jMddggVA-zop4_3kmo.jpg" width="200"/>
+       <h3>
+        Plumber
+       </h3>
+       <p>
+       Chinnamiram
+       </p>
+       <p>
+       open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Carpenter" height="150" src="https://storage.googleapis.com/a1aa/image/qjQDt4MIUbNCPCpH1IYHgVTx7-eU1nsNAMstueKcSdc.jpg" width="200"/>
+       <h3>
+        Carpenter
+       </h3>
+      
+       <p>
+        chinnamiram,Bhimavarm
+       </p>
+       <p>
+        closed
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Electrician" height="150" src="https://storage.googleapis.com/a1aa/image/vXY6giSr4i56zBdP-CPconmdHRF2a-tmvHRC1Utk7lA.jpg" width="200"/>
+       <h3>
+        Electrician
+       </h3>
+       <p>
+       peddamiram,Bhimavarm
+       </p>
+       <p>
+        open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Housekeeper" height="150" src="https://storage.googleapis.com/a1aa/image/dZwt8M3PLjJLAGBWLkNodjpvuOFvgC4gmz7ylCoFoYY.jpg" width="200"/>
+       <h3>
+        Housekeeper
+       </h3>
+       <p>
+        chinnamiram,Bhimavarm
+       </p>
+       <p>
+        open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Painter" height="150" src="https://storage.googleapis.com/a1aa/image/x23R-lEJg53h56CwfkBQthDXNPpXcZTarzkm1PY8vvc.jpg" width="200"/>
+       <h3>
+        Painter
+       </h3>
+       <p>
+       chinnamiram,Bhimavarm
+       </p>
+       <p>
+        open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Agricultural Laborer" height="150" src="https://storage.googleapis.com/a1aa/image/ROona5wQX_-WnHAVNeYTcD-QOcT9br7by-toFE088Ic.jpg" width="200"/>
+       <h3>
+        Agricultural Laborer
+       </h3>
+       <p>Bhimavarm</p>
+       <p>
+       open
+       </p>
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Delivery Driver" height="150" src="https://storage.googleapis.com/a1aa/image/jaRGtWubNzSkW2fE5gxRp5mg5kDL9wF8M98pWXNbSdo.jpg" width="200"/>
+       <h3>
+        Delivery Driver
+       </h3>
+       <p>Tadepalligudem</p>
+       <p>
+        open
+       </p>
+
+      </a>
+     </div>
+     <div class="static-forworkers-job-card">
+      <a href="#">
+       <img alt="Nanny" height="150" src="https://storage.googleapis.com/a1aa/image/51Yar0UF7MYpCSDj4Ie-NPMfpgz6wqNKGVqXZlZNO2o.jpg" width="200"/>
+       <h3>
+        Nanny
+       </h3>
+       <p>Tadepalligudem</p>
+       <p>
+        open
+       </p>
+      </a>
+     </div>
+    </div> 
+    <p class="status open">Open</p>
+    <p class="status pending">Pending</p>
+    <p class="status closed">Closed</p>
+</div>
+    <div class="forworkers-job-listings" id="job-listings">
+        <!-- Job cards will be inserted here -->
+    </div>
+
+</div>
+</div>
+  </div>
+  <script  src="navbar.js"></script>
+ <script src="forworkers.js"></script>
+ <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+
+ <script>
+  // Add event listener to Apply Filter button
+  document.getElementById("sortJobs").addEventListener("click", async function() {
+    const latitude = 16.5427;  // Example: Replace with actual value
+    const longitude = 81.4961; // Example: Replace with actual value
+
+    if (!latitude || !longitude) {
+      alert("Please provide valid latitude and longitude!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/jobs/sorted-by-distance?latitude=${latitude}&longitude=${longitude}`);
+      
+      if (!response.ok) {
+        throw new Error("Failed to fetch jobs");
+      }
+
+      const jobs = await response.json();
+      const reversedJobs = jobs.reverse();
+      displayJobs(reversedJobs);
+
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while fetching the jobs.");
+    }
+  });
+
+  // Function to choose a random image from the list
+  const imageLinks = [
+    "https://img.lovepik.com/free-png/20220125/lovepik-labour-day-png-image_401727417_wh860.png",
+    "https://static.vecteezy.com/system/resources/previews/005/084/935/non_2x/team-of-builders-and-contractor-industrial-workers-standing-together-in-job-site-free-vector.jpg",
+    "https://th.bing.com/th/id/OIP.SByCAsp5x2xX6kUOYhxxIwHaHa?pid=ImgDet&w=195&h=195&c=7&dpr=1.4"
+  ];
+
+  function getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * imageLinks.length);
+    return imageLinks[randomIndex];
+  }
+
+  // Function to display jobs in the DOM
+  function displayJobs(jobs) {
+    const jobListContainer = document.getElementById("job-listings");
+    jobListContainer.innerHTML = ''; // Clear previous job listings
+
+    if (jobs.length === 0) {
+      jobListContainer.innerHTML = '<p>No jobs found.</p>';
+      return;
+    }
+
+    jobs.forEach(job => {
+      const jobElement = document.createElement('div');
+      jobElement.classList.add('job-item');
+      
+      jobElement.innerHTML = `
+        <img src="${getRandomImage()}" alt="Job Image" width="200" height="150" />
+        <h3>${job.title}</h3>
+        <p>Location: ${job.location}</p>
+        
+        <p>Posted On: ${job.posted_on}</p>
+        <p>Deadline: ${job.deadline}</p>
+        <p>Status: ${job.status}</p>
+      `;
+      
+      jobListContainer.appendChild(jobElement);
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  <!-- <script>
+// function getSelectedFilters() {
+//   // Get selected values for Categories
+//   const categories = Array.from(document.querySelectorAll('#categories-filter input[type="checkbox"]:checked'))
+//     .map((checkbox) => checkbox.value);
+
+//   // Get the value for Proximity (true if checked, false otherwise)
+//   const proximity = document.getElementById('proximity-checkbox').checked;
+
+//   // Get selected values for Status
+//   const status = Array.from(document.querySelectorAll('#status-filter input[type="checkbox"]:checked'))
+//     .map((checkbox) => checkbox.value);
+
+//   // Log or use the selected filters
+//   console.log('Categories:', categories);
+//   console.log('Proximity:', proximity);
+//   console.log('Status:', status);
+
+//   // Use the filters in your logic
+// }
+
+  // Function to get the selected filters
+  
+  
+  function getSelectedFilters() {
+    // Get selected values for Categories
+    const categories = Array.from(document.querySelectorAll('#categories-filter input[type="checkbox"]:checked'))
+      .map((checkbox) => checkbox.value);
+
+    // If categories is empty, consider "All" categories selected
+    if (categories.length === 0) {
+      categories.push("All");
+    }
+
+    // Log or use the selected categories
+    console.log('Categories:', categories);
+
+    // Call the Node.js API to apply the filter
+    applyCategoryFilter(categories);
+  }
+
+  // Function to make an HTTP request to the Node.js server to filter jobs based on selected categories
+  function applyCategoryFilter(categories) {
+    fetch('http://localhost:3000/filter-jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        categories: categories,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Filtered Jobs:', data); // Log the filtered jobs from the response
+      // Update the UI with the filtered jobs (you can modify this as needed)
+    })
+    .catch(error => {
+      console.error('Error applying filter:', error);
+    });
+  }
+
+  // Event listener for Apply Filter button
+  document.getElementById('apply-filter-btn').addEventListener('click', function() {
+    getSelectedFilters(); // Call the getSelectedFilters function when the button is clicked
+  });
+
+
+
+  </script> -->
+ </body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+   Explore Services
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D8CCA3;
+            color: #87805E;
+        }
+        .services-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .services-main-content {
+            margin-top: 40px;
+        }
+        .services-main-content h1 {
+            font-size: 32px;
+            font-weight: 600;
+            text-align: center;
+            color: #37331f;
+           
+        }
+        .services-main-content p {
+            color: #6B7280;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .services-filters {
+            margin-top: 40px;
+        }
+        .services-filters h2 {
+            font-size: 20px;
+            font-weight: 600;
+            text-align:left;
+            color:#242114;
+          }
+        .services-filters .services-price-range {
+            margin-top: 20px;
+            text-align: center;
+
+        }
+        .price-range-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        .services-filters .services-price-range input {
+            width: 100%;
+        }
+        .services-filters .services-price-range span {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        .services-filters .services-options {
+            margin-top: 20px;
+        }
+        .services-filters .services-options label {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            
+        }
+        .services-filters .services-options input {
+            margin-right: 10px;
+        }
+        .services-filters .services-category {
+            margin-top: 20px;
+        }
+        .services-filters .services-category label {
+            color: #333;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        .services-filters .services-category select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+        }
+        .services-list {
+            margin-top: 40px;
+        }
+        .services-list h2 {
+            font-size: 24px;
+            font-weight: 900;
+            text-align: center;
+            color: #333;
+        }
+        .services-list .services-service-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .services-list .services-service-item {
+            width: calc(25% - 20px);
+            background-color: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .services-list .services-service-item:hover {
+            transform: scale(1.05);
+        }
+        .services-list .services-service-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .services-list .services-service-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #333;
+        }
+        .services-list .services-service-item p {
+            color: #6B7280;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .services-available-heading{
+          
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+            text-shadow: 1px 1px 1px #87805E;
+        }
+        @media (max-width: 1024px) {
+            .services-list .services-service-item {
+                width: calc(33.33% - 20px);
+            }
+        }
+        @media (max-width: 768px) {
+            .services-list .services-service-item {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .services-list .services-service-item {
+                width: 100%;
+            }
+        }
+  </style>
+   <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,te,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+ </head>
+ <body>
+  <div id="google_translate_element"></div>
+    
+   
+  <div class="services-main-container">
+    <div id="navbar-container"></div>
+    <div class="services-container">
+   <!-- <div class="services-main-content">
+     <div class="services-category">
+      <label for="category">
+       Category
+      </label>
+      <select id="category">
+       <option value="all">
+        All
+       </option>
+       <option value="home-cleaning">
+        Home cleaning
+       </option>
+       <option value="dog-walking">
+        Dog walking
+       </option>
+       <option value="yard-work">
+        Yard work
+       </option>
+       <option value="furniture-assembly">
+        Furniture assembly
+       </option>
+       <option value="personal-training">
+        Personal training
+       </option>
+       <option value="handyman">
+        Handyman
+       </option>
+       <option value="massage">
+        Massage
+       </option>
+       <option value="photography">
+        Photography
+       </option>
+       <option value="tutoring">
+        Tutoring
+       </option>
+       <option value="auto-detailing">
+        Auto detailing
+       </option>
+      </select>
+     </div>
+    </div> -->
+    <div class="services-list">
+     <h1 class="services-available-heading">
+      Services Available
+     </h1>
+     <div class="services-service-list">
+     
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Plumbing service image" height="200" src="https://thumbs.dreamstime.com/z/plumber-work-bathroom-plumbing-repair-service-assemble-install-concept-plumber-work-bathroom-plumbing-repair-113995223.jpg" width="200"/>
+        <h3>Plumbing</h3>
+        <p>⭐ 4.8 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Electrical work service image" height="200" src="https://img.freepik.com/free-photo/man-electrical-technician-working-switchboard-with-fuses_169016-24062.jpg" width="200"/>
+        <h3>Electrical work</h3>
+        <p>⭐ 4.7 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Painting service image" height="200" src="https://5.imimg.com/data5/MM/QM/MY-3741277/wall-painting-service-500x500.jpg" width="200"/>
+        <h3>Painting</h3>
+        <p>⭐ 4.5 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Carpentry service image" height="200" src="https://th.bing.com/th/id/OIP.RirBqgkW2ehRyCaU0DtNugHaE8?rs=1&pid=ImgDetMain" width="200"/>
+        <h3>Carpentry</h3>
+        <p>⭐ 4.6 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Masonry service image" height="200" src="https://th.bing.com/th/id/OIP.WyY4Qo-utnEQyHmufy8QHQHaE-?rs=1&pid=ImgDetMain" width="200"/>
+        <h3>Masonry</h3>
+        <p>⭐ 4.3 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Tailoring service image" height="200" src="https://www.shutterstock.com/image-photo/indian-woman-sewing-clothes-machine-600w-2023019783.jpg" width="200"/>
+        <h3>Tailoring</h3>
+        <p>⭐ 4.7 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Delivery service image" height="200" src="https://th.bing.com/th/id/OIP.Sm1aJbyTTdcXG8l0O9DaKQHaFb?w=243&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" width="200"/>
+        <h3>Delivery</h3>
+        <p>⭐ 4.8 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Child care service image" height="200" src="https://th.bing.com/th/id/OIP.joseWgxXG1M30SLm3m4lFwAAAA?rs=1&pid=ImgDetMain" width="200"/>
+        <h3>Child care</h3>
+        <p>⭐ 4.9 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Agriculture service image" height="200" src="https://th.bing.com/th?id=OIP.dQ7bdQ8mhBXXLkGt0HKIowHaFS&w=296&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2" width="200"/>
+        <h3>Agriculture</h3>
+        <p>⭐ 4.6 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Tutoring service image" height="200" src="https://assets.grooveapps.com/images/eeeed9a1-a080-4b7d-acbb-f35c2c516319/1649607028_HomeTuitionHomeTutor.jpg" width="200"/>
+        <h3>Tutoring</h3>
+        <p>⭐ 4.1 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Electronics repair service image" height="200" src="https://th.bing.com/th/id/OIP.7zwg74jB-qOpS14dpgNerwHaE8?rs=1&pid=ImgDetMain" width="200"/>
+        <h3>Electronics repair</h3>
+        <p>⭐ 4.4 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Construction service image" height="200" src="https://th.bing.com/th/id/R.1fd9888852e014e9b8ab0260ce56d259?rik=eHzQZ0G8SH83Cw&riu=http%3a%2f%2fi.dawn.com%2flarge%2f2016%2f01%2f56aa49056c785.jpg&ehk=pnyslehfEhO3YNJoe%2fHQHm1TdYqk7wpSPJ%2bSvjLh7mM%3d&risl=&pid=ImgRaw&r=0" width="200"/>
+        <h3>Construction</h3>
+        <p>⭐ 4.9 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Old age nursing service image" height="200" src="https://th.bing.com/th/id/OIP.CSB5WC-mLTspK6Kim1_5YwHaE7?w=509&h=339&rs=1&pid=ImgDetMain" width="200"/>
+        <h3>Old age nursing</h3>
+        <p>⭐ 4.8 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Home cleaning service image" height="200" src="https://www.cleanmyplace.in/assets/img/services/1.jpg" width="200"/>
+        <h3>Home cleaning</h3>
+        <p>⭐ 4.9 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Yard work service image" height="200" src="https://cdn.pixabay.com/photo/2015/07/29/09/47/indian-worker-865664__340.jpg" width="200"/>
+        <h3>Yard work</h3>
+        <p>⭐ 4.7 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Furniture assembly service image" height="200" src="https://storage.googleapis.com/a1aa/image/iTWb42OhZPv_dZryNYxtrMIOyeiYHinMlkpTTSuzfkY.jpg" width="200"/>
+        <h3>Furniture assembly</h3>
+        <p>⭐ 4.6 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Handyman service image" height="200" src="https://storage.googleapis.com/a1aa/image/6Ali2JDN4RQWIqgghVgtELJwGuHQo1ckxf6vFbrvUL8.jpg" width="200"/>
+        <h3>Handyman</h3>
+        <p>⭐ 4.4 rating</p>
+      </a>
+      <a href="post_job.html" class="services-service-item">
+        <img alt="Auto detailing service image" height="200" src="https://storage.googleapis.com/a1aa/image/28AAykGFX6zGTVd_3upan0UkKn7lrz6hEZaWmMWzVaI.jpg" width="200"/>
+        <h3>Auto detailing</h3>
+        <p>⭐ 4.0 rating</p>
+      </a>
+    </div>
+    
+    </div>
+   </div>
+  </div>
+</div>
+  <script>
+   function updatePriceRange(value) {
+            document.getElementById('price-range-value').innerText = `₹0 - ₹${value}`;
+        }
+  </script>
+   <script  src="navbar.js"></script>
+   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+ </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <title>
+   Job Details - Plumber
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D8CCA3;
+            color: #333;
+        }
+        .apply-page-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #FAF9F6;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .apply-page-job-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+        }
+        .apply-page-job-category {
+            font-size: 16px;
+            color: #B08968;
+            margin-bottom: 30px;
+        }
+        .apply-page-job-details {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .apply-page-job-description, .apply-page-job-info {
+            border-top: 1px solid #E0E0E0;
+            padding: 20px 0;
+        }
+        .apply-page-job-description p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .apply-page-job-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+        .apply-page-job-info div {
+            width: 45%;
+        }
+        .apply-page-apply-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+        .apply-page-apply-button button {
+            background-color: #D4A373;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .apply-page-apply-button button:hover {
+            background-color: #C18B5A;
+        }
+        .apply-page-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #B08968;
+        }
+        .apply-page-footer .apply-page-copyright {
+            font-size: 14px;
+        }
+  </style>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,te,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+  </script>
+ </head>
+ <body>
+    <div id="google_translate_element"></div>
+  <div class="apply-page-container">
+    <h2 class="apply-page-job-title" id="job-title-id">
+     Plumber
+    </h2>
+    <div class="apply-page-job-category" id="job-category-id">
+     Construction / Plumbing
+    </div>
+    <div class="apply-page-job-details">
+     Job Details
+    </div>
+    <div class="apply-page-job-description">
+     <div class="apply-page-job-info">
+      <div>
+       <strong>
+        Job Description
+       </strong>
+       <p id="job-description-id">
+        We are looking for a skilled and experienced plumber to join our team. The ideal candidate should have a strong understanding of plumbing systems, be able to work independently, and have a commitment to high-quality work. You will be responsible for installing, repairing, and maintaining plumbing systems in residential and commercial settings.
+       </p>
+      </div>
+     
+     </div>
+     <div class="apply-page-job-info">
+      <div>
+       <strong>
+        Type
+       </strong>
+       <p>
+        Full-time
+       </p>
+      </div>
+      <div>
+       <strong >
+        Location
+       </strong>
+       <p id="job-location-id">
+        Mumbai, India
+       </p>
+      </div>
+     </div>
+     <div class="apply-page-job-info">
+      <div>
+       <strong>
+        Posted On
+       </strong>
+       <p id="job-posted-on-id">
+        Feb 25, 2023
+       </p>
+      </div>
+      <div>
+       <strong>
+        Application Deadline
+       </strong>
+       <p id="job-deadline-id">
+        Mar 18, 2023
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="apply-page-apply-button">
+    <button onclick="applyForJob()">
+        Apply Now
+    </button>
+    </div>
+   
+   <footer class="apply-page-footer">
+    <div class="apply-page-copyright">
+     @2025, SEVAK
+    </div>
+   </footer>
+  </div>
+  <script>
+   const jobData = JSON.parse(localStorage.getItem('jobDetails')); // Parse the stored data to a JavaScript object
+console.log(jobData);
+
+// Ensure jobData is properly available and has the expected structure
+if (jobData) {
+    document.getElementById('job-title-id').textContent = jobData.title;
+    document.getElementById('job-category-id').textContent = jobData.category;
+    document.getElementById('job-description-id').textContent = jobData.description;
+    document.getElementById('job-location-id').textContent = jobData.location;
+    document.getElementById('job-posted-on-id').textContent = jobData.posted_on;
+    document.getElementById('job-deadline-id').textContent = jobData.deadline;
+} else {
+    console.error('Job data is not available or incorrect format in localStorage');
+}
+async function applyForJob() {
+    alert('You have successfully applied for the job!');
+    const userId = localStorage.getItem("userId"); // Get userId from localStorage
+
+    if (!userId) {
+        alert("User ID not found. Please log in first.");
+        return;
+    }
+
+    const apiUrl = "http://localhost:3000/insertTokensForJob";
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("10 tokens added successfully!");
+        } else {
+            alert(`Failed to add tokens: ${data.error}`);
+        }
+    } catch (error) {
+        console.error("Error adding tokens:", error);
+        alert("Error adding tokens. Please try again.");
+    }
+}
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+ </body>
+</html>
