@@ -1,0 +1,220 @@
+### Sign Up Request
+POST http://localhost:3000/signUp
+Content-Type: application/json
+
+{
+  "email": "testuser5@example.com",
+  "password": "Strongpass@123",
+  "role": "Admin",
+  "profile_picture": "/FRONTEND/images/test_user_pic.jpeg"
+}
+
+
+### Test Form Submission
+POST http://localhost:3000/submitForm
+Content-Type: application/json
+
+{
+  "email": "vinaykosanam123@gamail.com",
+  "full_name": "Test User",
+  "phone_number": "1234567890",
+  "bio": "A brief bio about Test User.",
+  "city": "Bhimavaram",
+  "state": "Andhra Pradesh",
+  "country": "India",
+  "profile_picture": "/FRONTEND/images/default_profile_pic.jpeg",
+  "professional_role": "Volunteer",
+  "skills": ["Carpentry", "Plumbing", "Electrical"],
+  "institution_name": "Test Institution",
+  "highest_education_level": "High School Graduate",
+  "year_of_completion": 2015
+}
+
+### Request 1: Post Marketing Manager Job
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Plumbing",
+  "category": "Plumbing",
+  "description": "Need a plumber to fix a leaky faucet in the kitchen.",
+  "latitude": 17.6868,
+  "longitude": 83.2185,
+  "location": "Visakhapatnam, Andhra Pradesh",
+  "posted_on": "2025-01-28",
+  "deadline": "2025-03-01",
+  "email": "testuser5@example.com",
+  "assigned_to": 3,
+  "status": "open"
+}
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Construction Laborer",
+  "category": "Construction",
+  "description": "Assist with construction tasks such as building foundations, transporting materials, and assisting skilled workers.",
+  "latitude": 16.5062,
+  "longitude": 80.6480,
+  "location": "Vijayawada, Andhra Pradesh",
+  "posted_on": "2025-01-28",
+  "deadline": "2025-02-28",
+  "email": "vivek@gmail.com",
+  "assigned_to": 3,
+  "status": "open"
+}
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Plumber Helper",
+  "category": "Plumbing",
+  "description": "Assist licensed plumbers with installation, maintenance, and repair of plumbing systems in residential and commercial buildings.",
+  "latitude": 16.4741,
+  "longitude": 80.4102,
+  "location": "Amaravati, Andhra Pradesh",
+  "posted_on": "2025-01-29",
+  "deadline": "2025-02-28",
+  "email": "vivek@gmail.com",
+  "assigned_to": 4,
+  "status": "open"
+}
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Electrical Laborer",
+  "category": "Electrical Repairs",
+  "description": "Assist electricians with installing wiring, fixtures, and troubleshooting electrical systems in both residential and commercial projects.",
+  "latitude": 16.3067,
+  "longitude": 80.4365,
+  "location": "Guntur, Andhra Pradesh",
+  "posted_on": "2025-01-30",
+  "deadline": "2025-03-15",
+  "email": "asa@gmail.com",
+  "assigned_to": 7,
+  "status": "open"
+}
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Construction Laborer",
+  "category": "Construction",
+  "description": "Assist with general construction duties including material handling.",
+  "latitude": 13.6288,
+  "longitude": 79.4192,
+  "location": "Tirupati, Andhra Pradesh",
+  "posted_on": "2025-01-28",
+  "deadline": "2025-02-28",
+  "email": "rahi@gmail.com",
+  "assigned_to": 5,
+  "status": "open"
+}
+
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Warehouse Laborer",
+  "category": "All",
+  "description": "Load and unload shipments, organize inventory in warehouse.",
+  "latitude": 16.9892,
+  "longitude": 82.2401,
+  "location": "Kakinada, Andhra Pradesh",
+  "posted_on": "2025-01-29",
+  "deadline": "2025-03-01",
+  "email": "venu@gmail.com",
+  "assigned_to": 6,
+  "status": "open"
+}
+
+###
+POST http://localhost:3000/jobsPostings
+Content-Type: application/json
+
+{
+  "title": "Child care",
+  "category": "Childcare/Nanny Services",
+  "description": "Help with landscaping duties such as lawn care and tree trimming.",
+  "latitude": 14.4427,
+  "longitude": 79.9866,
+  "location": "Nellore, Andhra Pradesh",
+  "posted_on": "2025-01-30",
+  "deadline": "2025-03-15",
+  "email": "subbu@gmail.com",
+  "assigned_to": null,
+  "status": "open"
+}
+
+### get all the jobs
+GET http://localhost:3000/allJobs
+
+
+###
+GET http://localhost:3000/allJobs/30
+
+
+### Filters
+POST http://localhost:3000/filter-jobs
+Content-Type: application/json
+
+{
+  "categories": []
+}
+
+
+### Earn -tokens
+POST http://localhost:3000/earn-tokens
+Content-Type: application/json
+
+{
+    "userId": 3,
+    "amount": 10,
+    "reason": "Job completed successfully"
+}
+
+
+###
+POST http://localhost:3000/spend-tokens
+Content-Type: application/json
+
+{
+    "userId": 3,
+    "amount": 5,
+    "reason": "Priority job access"
+}
+
+
+###
+GET http://localhost:3000/token-balance/3
+
+
+###
+GET http://localhost:3000/getAllTokens/3
+
+###
+POST http://localhost:3000/insertTokens
+Content-Type: application/json
+
+{
+    "userId": 4 
+}
+
+###
+POST http://localhost:3000/insertTokensForJob
+Content-Type: application/json
+
+{
+    "userId": 4 
+}
+
+
+####Get Jobs Sorted by Distance
+GET http://localhost:3000/jobs/sorted-by-distance?latitude=81.4961&longitude=81.4961
+Accept: application/json
